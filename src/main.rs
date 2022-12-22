@@ -1,5 +1,6 @@
 // Silence some warnings so they don't distract from the exercise.
 #![allow(unused_mut, unused_variables)]
+// use std::fmt::Write;
 
 fn main() {
     // This fancy stuff either gets the first argument as a String, or prints
@@ -8,20 +9,23 @@ fn main() {
         println!("Please supply an argument to this program.");
         std::process::exit(-1);
     });
+    // cargo run foo
+    // assert_eq!(arg, "foo");
 
     // 1. Write a function `inspect` that takes a reference to a String, returns nothing, but
     // prints whether the contents of the String is plural or singular. Then uncomment and run this
-    // code with `cargo run apple` and `cargo run apples'.  Hint: use `.ends_with("s")` on the
+    // code with `cargo run apple` and `cargo run apples'.
+    // Hint: use `.ends_with("s")` on the
     // String reference
     //
-    //inspect(&arg);
+    // inspect(&arg);
 
     // 2. Write a function `change` that takes a *mutable* reference to a String and adds an "s" to
     // the String if it doesn't already end with "s". Then uncomment and run the code below with
     // `cargo run apple`.  Hint: use `.push_str("s")` on the mutable String reference to add an "s".
     //
-    //change(&mut arg);
-    //println!("I have many {}", arg);
+    change(&mut arg);
+    println!("I have many {}", arg);
 
     // 3. Write a function `eat` that accepts ownership of (consumes) a String and returns a bool
     // indicating whether or not the String both starts with a "b" AND contains an "a".
@@ -48,3 +52,15 @@ fn main() {
     // bedazzle(&mut material);
     // println!("Wow! Now the material is `{}`!", material);
 }
+
+fn change(arg: &mut String) {
+    arg.push_str("s");
+}
+
+// fn inspect(arg: &str) {
+//     if !arg.ends_with("s") {
+//         println!("{}", arg.to_owned() + "s");
+//     } else {
+//         println!("{}", &arg[..arg.len() - 1]);
+//     }
+// }
